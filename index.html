@@ -13,9 +13,6 @@
         <h1> SUMA DE MATRICES CUADRADAS </h1>  
         <!-- Seleccionar el Tamaño de la matriz-->  
          <div class = 'matriz_size'>
-            <label for = "size"> Tamaño  (n x n):</label>
-            <input type = "number" id = "n" min = '2' max = '10'>
-            <button id = 'generate' > Generar </button>
             <button id = 'sum'> Sumar</button>
          </div>
 
@@ -25,6 +22,9 @@
             <!-- Matriz A-->
             <div class = 'block_matriz'>
                 <h2> Matriz A</h2>
+                <label for = "nA"> Tamaño  (n x n):</label>
+                <input type = "number" id = "nA" min = '2' max = '10'>
+                <button id = 'generateA' > Generar </button>
                 <div id = 'matrizSA' class ='matriz_grid'></div>
                 <div class = 'buttons'>
                     <button id="genSA">Ejemplo </button>
@@ -36,6 +36,9 @@
             <!-- Matriz B-->
             <div class = 'block_matriz'>
                 <h2> Matriz B</h2>
+                <label for = "nB"> Tamaño  (n x n):</label>
+                <input type = "number" id = "nB" min = '2' max = '10'>
+                <button id = 'generateB' > Generar </button>
                 <div id = 'matrizSB' class = 'matriz_grid'></div>
                 <div class = 'buttons'>
                     <button id="genSB">Ejemplo </button>

@@ -8,17 +8,14 @@ function MatrizInputs(IDcontainer, n) {
     if (!n) return console.warn('n no detectado');
 
     container.innerHTML = '';
-    container.style.display = 'grid';
-    container.style.gridTemplateColumns = `repeat(${n}, 50px)`;
-    container.style.gap = '5px';
+    // controlar columnas mediante la variable CSS --cols (definida en style.css)
+    container.style.setProperty('--cols', String(n));
 
     // Crear inputs (n x n)
     for (let i = 0; i < n * n; i++) {
         const input = document.createElement('input');
         input.type = 'number';
         input.className = 'celda_matriz';
-        input.style.width = '50px';
-        input.style.boxSizing = 'border-box';
         container.appendChild(input);
     }
 }
@@ -154,8 +151,10 @@ function GenerarMatrizPrueba3x3(IDcontainer) {
    ============================================================ */
 document.addEventListener("DOMContentLoaded", () => {
 
-    const inputN = document.getElementById("n");
-    const btnGenerar = document.getElementById("generate");
+    const inputNA = document.getElementById("nA");
+    const inputNB = document.getElementById("nB");
+    const btnGenerateA = document.getElementById("generateA");
+    const btnGenerateB = document.getElementById("generateB");
     const btnSumar = document.getElementById("sum");
 
     // Botones para Matriz A
@@ -169,35 +168,53 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnClearSB = document.getElementById("clearSB");
 
     // Helper: leer n válido
-    function leerN() {
-        if (!inputN) return null;
-        const n = parseInt(inputN.value, 10);
+    function leerNA() {
+        if (!inputNA) return null;
+        const n = parseInt(inputNA.value, 10);
+        return (Number.isInteger(n) && n >= 2 && n <= 10) ? n : null;
+    }
+    function leerNB() {
+        if (!inputNB) return null;
+        const n = parseInt(inputNB.value, 10);
         return (Number.isInteger(n) && n >= 2 && n <= 10) ? n : null;
     }
 
-    // Generar ambas matrices según el input n
-    if (btnGenerar) {
-        btnGenerar.addEventListener("click", () => {
-            const n = leerN();
-            if (!n) {
-                alert("Introduce un tamaño válido entre 2 y 10");
-                return;
-            }
+    // Generar cada matriz según su propio input
+    if (btnGenerateA) {
+        btnGenerateA.addEventListener("click", () => {
+            const n = leerNA();
+            if (!n) return alert("Introduce un tamaño válido entre 2 y 10 para la Matriz A");
             MatrizInputs("matrizSA", n);
+            const contR = document.getElementById("matrizSAB");
+            if (contR) contR.innerHTML = '';
+        });
+    }
+    if (btnGenerateB) {
+        btnGenerateB.addEventListener("click", () => {
+            const n = leerNB();
+            if (!n) return alert("Introduce un tamaño válido entre 2 y 10 para la Matriz B");
             MatrizInputs("matrizSB", n);
             const contR = document.getElementById("matrizSAB");
-            if (contR) contR.innerHTML = ''; // limpiar resultado anterior
+            if (contR) contR.innerHTML = '';
         });
     }
 
-    // Sumar matrices
-    if (btnSumar) {
-        btnSumar.addEventListener("click", () => {
-            const n = parseInt(inputN?.value, 10);
-            if (!n) return alert("Primero genera las matrices");
+     // Sumar matrices
+     if (btnSumar) {
+         btnSumar.addEventListener("click", () => {
+            const nA = leerNA();
+            const nB = leerNB();
+            if (!nA || !nB) return alert("Primero genera ambas matrices");
+            if (nA !== nB) {
+                return alert("Error: Las matrices deben tener el mismo tamaño para sumar (nA debe ser igual a nB).");
+            }
+            
+            // confirmar al usuario que desea continuar con la suma
+            const confirmar = confirm(`Ambas matrices son ${nA} x ${nA}. ¿Deseas sumar A + B?`);
+            if (!confirmar) return;
 
-            const A = LeerMatriz("matrizSA", n);
-            const B = LeerMatriz("matrizSB", n);
+            const A = LeerMatriz("matrizSA", nA);
+            const B = LeerMatriz("matrizSB", nA);
 
             if (!A || !B) return alert("Matrices no válidas");
 
@@ -207,74 +224,69 @@ document.addEventListener("DOMContentLoaded", () => {
             const contR = document.getElementById("matrizSAB");
             if (!contR) return;
             contR.innerHTML = '';
-            contR.style.display = 'grid';
-            contR.style.gridTemplateColumns = `repeat(${n}, 50px)`;
-            contR.style.gap = '5px';
+            // usar la variable CSS para definir columnas
+            contR.style.setProperty('--cols', String(nA));
+            contR.classList.add('matriz_grid');
 
-            for (let i = 0; i < n; i++) {
-                for (let j = 0; j < n; j++) {
+            for (let i = 0; i < nA; i++) {
+                for (let j = 0; j < nA; j++) {
                     const celda = document.createElement("div");
                     celda.className = "celda_resultado";
                     celda.textContent = result[i][j];
-                    celda.style.width = '50px';
-                    celda.style.height = '30px';
-                    celda.style.textAlign = 'center';
-                    celda.style.border = '1px solid #ccc';
-                    celda.style.borderRadius = '5px';
                     contR.appendChild(celda);
                 }
             }
-        });
-    }
+         });
+     }
 
-    // Generar / Aleatorios / Limpiar para Matriz A
-    if (btnGenSA) {
-        btnGenSA.addEventListener("click", () => {
+     // Generar / Aleatorios / Limpiar para Matriz A
+     if (btnGenSA) {
+         btnGenSA.addEventListener("click", () => {
             // Generar ejemplo 3x3 en la Matriz A
-            if (inputN) inputN.value = '3';
+            if (inputNA) inputNA.value = '3';
             GenerarMatrizPrueba3x3("matrizSA");
-            const contR = document.getElementById("matrizSAB");
-            if (contR) contR.innerHTML = '';
-        });
-    }
-    if (btnRandSA) {
-        btnRandSA.addEventListener("click", () => {
-            const n = parseInt(inputN?.value, 10);
+             const contR = document.getElementById("matrizSAB");
+             if (contR) contR.innerHTML = '';
+         });
+     }
+     if (btnRandSA) {
+         btnRandSA.addEventListener("click", () => {
+            const n = parseInt(inputNA?.value, 10);
             if (!n) return alert("Primero genera la matriz A");
             RellenarMatrizAleatoria("matrizSA", n);
-        });
-    }
-    if (btnClearSA) {
-        btnClearSA.addEventListener("click", () => {
-            clearMatrix("matrizSA");
-            const contR = document.getElementById("matrizSAB");
-            if (contR) contR.innerHTML = '';
-        });
-    }
+         });
+     }
+     if (btnClearSA) {
+         btnClearSA.addEventListener("click", () => {
+             clearMatrix("matrizSA");
+             const contR = document.getElementById("matrizSAB");
+             if (contR) contR.innerHTML = '';
+         });
+     }
 
-    // Generar / Aleatorios / Limpiar para Matriz B
-    if (btnGenSB) {
-        btnGenSB.addEventListener("click", () => {
+     // Generar / Aleatorios / Limpiar para Matriz B
+     if (btnGenSB) {
+         btnGenSB.addEventListener("click", () => {
             // Generar ejemplo 3x3 en la Matriz B
-            if (inputN) inputN.value = '3';
+            if (inputNB) inputNB.value = '3';
             GenerarMatrizPrueba3x3("matrizSB");
-            const contR = document.getElementById("matrizSAB");
-            if (contR) contR.innerHTML = '';
-        });
-    }
-    if (btnRandSB) {
-        btnRandSB.addEventListener("click", () => {
-            const n = parseInt(inputN?.value, 10);
+             const contR = document.getElementById("matrizSAB");
+             if (contR) contR.innerHTML = '';
+         });
+     }
+     if (btnRandSB) {
+         btnRandSB.addEventListener("click", () => {
+            const n = parseInt(inputNB?.value, 10);
             if (!n) return alert("Primero genera la matriz B");
             RellenarMatrizAleatoria("matrizSB", n);
-        });
-    }
-    if (btnClearSB) {
-        btnClearSB.addEventListener("click", () => {
-            clearMatrix("matrizSB");
-            const contR = document.getElementById("matrizSAB");
-            if (contR) contR.innerHTML = '';
-        });
-    }
+         });
+     }
+     if (btnClearSB) {
+         btnClearSB.addEventListener("click", () => {
+             clearMatrix("matrizSB");
+             const contR = document.getElementById("matrizSAB");
+             if (contR) contR.innerHTML = '';
+         });
+     }
 
-});
+ });
