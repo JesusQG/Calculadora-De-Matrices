@@ -18,29 +18,34 @@
             <button id = 'generate' > Generar </button>
             <button id = 'sum'> Sumar</button>
          </div>
+
          <!-- Contenedor de las Matrices-->
          <div class = 'matrices'>
 
-            <div class = ' block_matriz'>
+            <!-- Matriz A-->
+            <div class = 'block_matriz'>
                 <h2> Matriz A</h2>
                 <div id = 'matrizSA' class ='matriz_grid'></div>
+                <div class = 'buttons'>
+                    <button id="genSA">Ejemplo </button>
+                    <button id="randSA">Aleatorios </button>
+                    <button id="clearSA">Limpiar </button>
+                </div>
             </div>
             
+            <!-- Matriz B-->
             <div class = 'block_matriz'>
                 <h2> Matriz B</h2>
                 <div id = 'matrizSB' class = 'matriz_grid'></div>
+                <div class = 'buttons'>
+                    <button id="genSB">Ejemplo </button>
+                    <button id="randSB">Aleatorios </button>
+                    <button id="clearSB">Limpiar </button>
+                </div>
             </div>
 
-         <!-- Botones-->
-
-         <div class = 'buttons'>
-            <button id = 'clear'> Limpiar Valores</button>
-            <button id = 'Random'> Valores Aleatorios</button>
-            <button id = 'test'> Matrices De Prueba</button>
-         </div>
-
          <!-- Resultado -->
-         <div class="block_matriz">
+         <div class="block_matriz result_matriz">
             <h2>Resultado (A + B)</h2>
          <div id="matrizSAB" class="matriz_grid"></div>
          </div>
