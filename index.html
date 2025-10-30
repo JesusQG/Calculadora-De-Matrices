@@ -1,14 +1,49 @@
+<!DOCTYPE html>  
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="index.js" defer> </script>
     <link rel="stylesheet" href="style.css">
-    <title>Calculadora de Matrices
-
-    </title>
+    <link rel = "icon" type = image/png href = "images/Simbolos.png">
+    <title>Calculadora de Matrices</title>
 </head>
 <body>
-    
+    <div class = "contenedor">
+        <h1> SUMA DE MATRICES CUADRADAS </h1>  
+        <!-- Seleccionar el Tamaño de la matriz-->  
+         <div class = 'matriz_size'>
+            <label for = "size"> Tamaño  (n x n):</label>
+            <input type = "number" id = "n" min = '2' max = '10'>
+            <button id = 'generate' > Generar </button>
+            <button id = 'sum'> Sumar</button>
+         </div>
+         <!-- Contenedor de las Matrices-->
+         <div class = 'matrices'>
+
+            <div class = ' block_matriz'>
+                <h2> Matriz A</h2>
+                <div id = 'matrizSA' class ='matriz_grid'></div>
+            </div>
+            
+            <div class = 'block_matriz'>
+                <h2> Matriz B</h2>
+                <div id = 'matrizSB' class = 'matriz_grid'></div>
+            </div>
+
+         <!-- Botones-->
+
+         <div class = 'buttons'>
+            <button id = 'clear'> Limpiar Valores</button>
+            <button id = 'Random'> Valores Aleatorios</button>
+            <button id = 'test'> Matrices De Prueba</button>
+         </div>
+
+         <!-- Resultado -->
+         <div class="block_matriz">
+            <h2>Resultado (A + B)</h2>
+         <div id="matrizSAB" class="matriz_grid"></div>
+         </div>
+    </div>
 </body>
 </html>
