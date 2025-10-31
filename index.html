@@ -1,4 +1,4 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,53 +9,127 @@
     <title>Calculadora de Matrices</title>
 </head>
 <body>
-    <div class = "contenedor">
-        <h1> 2 MATRICES </h1>  
-        <!-- Seleccionar el Tamaño de la matriz-->  
-         <div class = 'matriz_size'>
+    <div class="contenedor">
+        <h1> 2 MATRICES </h1>
+         <div class='matriz_size'>
             <p1> OPERACIONES DISPONIBLES: </p1>
-            <button id = 'sum'> A + B</button>
+            <button id='sum'> A + B</button>
             <button id='restAB'>A - B</button>
             <button id='restBA'>B - A</button>
             <button id='multAB'>A * B</button>
          </div>
 
-         <!-- Contenedor de las Matrices-->
-         <div class = 'matrices'>
+         <div class='matrices'>
 
-            <!-- Matriz A-->
-            <div class = "block_matriz">
+            <div class="block_matriz">
                 <h2> Matriz A</h2>
-                <label for = "nA"> Tamaño  (n x n):</label>
-                <input type = "number" id = "nA" min = '2' max = '10'>
-                <button id = 'generateA' > Generar </button>
-                <div id = 'matrizSA' class ='matriz_grid'></div>
-                <div class = 'buttons'>
-                    <button id="genSA">Ejemplo </button>
-                    <button id="randSA">Aleatorios </button>
-                    <button id="clearSA">Limpiar </button>
+                <label for="nA"> Tamaño  (n x n):</label>
+                <input type="number" id="nA" min='2' max='10'>
+                <button id='generateA'> Generar </button>
+                <div id='matrizSA' class='matriz_grid'></div>
+                <div class='buttons'>
+                    <button id="genSA">Ejemplo</button>
+                    <button id="randSA">Aleatorios</button>
+                    <button id="clearSA">Limpiar</button>
                 </div>
             </div>
             
-            <!-- Matriz B-->
-            <div class = "block_matriz">
+            <div class="block_matriz">
                 <h2> Matriz B</h2>
-                <label for = "nB"> Tamaño  (n x n):</label>
-                <input type = "number" id = "nB" min = '2' max = '10'>
-                <button id = 'generateB' > Generar </button>
-                <div id = 'matrizSB' class = 'matriz_grid'></div>
-                <div class = 'buttons'>
-                    <button id="genSB">Ejemplo </button>
-                    <button id="randSB">Aleatorios </button>
-                    <button id="clearSB">Limpiar </button>
+                <label for="nB"> Tamaño  (n x n):</label>
+                <input type="number" id="nB" min='2' max='10'>
+                <button id='generateB'> Generar </button>
+                <div id='matrizSB' class='matriz_grid'></div>
+                <div class='buttons'>
+                    <button id="genSB">Ejemplo</button>
+                    <button id="randSB">Aleatorios</button>
+                    <button id="clearSB">Limpiar</button>
                 </div>
             </div>
 
-         <!-- Resultado -->
          <div class="block_matriz result_matriz">
             <h2>Resultado (A + B)</h2>
-         <div id="matrizR" class="matriz_grid"></div>
+            <div id="matrizR" class="matriz_grid"></div>
          </div>
     </div>
+
+    <div class="contenedor">
+    <h2>Multiplicación por Escalar</h2>
+    <div class="esc_multiplicacion">
+
+      <div class="block_matriz">
+        <h3>Matriz</h3>
+        <label for="nA"> Tamaño  (n x n):</label>
+        <input type="number" id="nA" min='2' max='10'>
+        <button id='generateE'> Generar </button>
+        <div class="matriz_container" id="matrizEsc"></div>
+        <div class="buttons">
+          <button id="escEjemplo">Matriz de Prueba</button>
+          <button id="escAleatorios">Aleatorios</button>
+          <button id="escLimpiar">Limpiar</button>
+        </div>
+      </div>
+
+      <div class="block_matriz esc_escalar">
+        <h3>Escalar</h3>
+        <input type="number" id="valorEscalar" placeholder="Ingrese un número">
+        <button id="btnMultiplicarEscalar">Multiplicar</button>
+      </div>
+
+      <div class="block_matriz esc_resultado">
+        <h3>Resultado</h3>
+        <div id="matrizEscResultado" class="matriz_grid"></div>
+      </div>
+
+    </div> 
+  </div>
+
+  <div class="contenedor">
+    <h2>Transposición de Matriz</h2>
+    <div class="transp_multiplicacion">
+
+      <div class="block_matriz">
+        <h3>Matriz a Trasponer</h3>
+        <label for="nTrans"> Tamaño  (n x n):</label>
+        <input type="number" id="nTrans" min="2" max="10" placeholder="n">
+        <button id="generateT">Generar</button>
+        <div id="matrizTrans" class="matriz_grid"></div>
+        <div class="buttons">
+          <button id="transEjemplo">Ejemplo</button>
+          <button id="transAleatorios">Aleatorios</button>
+          <button id="transLimpiar">Limpiar</button>
+        </div>
+      </div>
+
+      <div class="block_matriz">
+        <h3>Operación</h3>
+        <button id="btnTransponer">Calcular Traspuesta</button>
+      </div>
+
+      <div class="block_matriz">
+        <h3>Resultado (Traspuesta)</h3>
+        <div id="matrizTransResultado" class="matriz_grid"></div>
+      </div>
+
+    </div>
+  </div>
+  
+  <div class="contenedor">
+  <h2>Matriz Identidad</h2>
+  <div class="identidad_multiplicacion">
+
+    <div class="block_matriz">
+      <h3>Tamaño de la Matriz (n x n)</h3>
+      <input type="number" id="nIdentidad" min="2" max="10" placeholder="n">
+      <button id="generateIdentidad">Generar</button>
+    </div>
+
+    <div class="block_matriz">
+      <h3>Resultado</h3>
+      <div id="matrizIdentidadResultado" class="matriz_grid"></div>
+    </div>
+
+  </div>
+</div>
 </body>
 </html>

@@ -1,76 +1,142 @@
-/* Contenedor general */
-.contenedor {
-	max-width: 900px;
-	margin: 20px auto;
-	padding: 16px;
-	font-family: Arial, sans-serif;
+body {
+    background-color: #cce7ff;
+    font-family: Arial, sans-serif;
 }
 
-/* Layout de las matrices */
+.contenedor {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 16px;
+}
+
 .matrices {
-	display: flex;
-	gap: 16px;
-	flex-wrap: wrap;
-	justify-content: space-between;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 16px;
 }
 
 .block_matriz {
-	border: 1px solid #ddd;
-	padding: 10px;
-	border-radius: 6px;
-	background: #fafafa;
-	min-width: 260px;
-	box-sizing: border-box;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 6px;
+    background: #fafafa;
+    min-width: 260px;
+    box-sizing: border-box;
 }
 
-/* Rejilla de matriz: usa la variable --cols para el número de columnas */
 .matriz_grid {
-	display: grid;
-	grid-template-columns: repeat(var(--cols, 3), 50px);
-	gap: 5px;
-	margin-top: 8px;
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 3), 50px);
+    gap: 5px;
+    margin-top: 8px;
 }
 
-/* Inputs de matriz */
 .celda_matriz {
-	width: 50px;
-	height: 30px;
-	box-sizing: border-box;
-	padding: 4px;
-	text-align: center;
-	border: 1px solid #ccc;
-	border-radius: 4px;
+    width: 50px;
+    height: 30px;
+    box-sizing: border-box;
+    padding: 4px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 4px;
 }
 
-/* Resultado: celdas (no son inputs) */
+#matrizSA input {
+    background-color: #b2f2b2;
+}
+
+#matrizSB input {
+    background-color: #d6b2f2;
+}
+
 .celda_resultado {
-	width: 50px;
-	height: 30px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	background: #fff;
-	font-weight: 600;
+    width: 50px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: #f2b2b2;
+    font-weight: 600;
 }
 
-/* Pequeños estilos para botones y áreas */
 .buttons {
-	margin-top: 8px;
-	display: flex;
-	gap: 6px;
-	flex-wrap: wrap;
+    margin-top: 8px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 button {
-	cursor: pointer;
-	padding: 6px 8px;
-	border-radius: 4px;
-	border: 1px solid #bbb;
-	background: #f0f0f0;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #bbb;
+    background-color: #fff6b2;
+    transition: background 0.2s ease;
 }
 
 button:hover {
-	background: #e8e8e8;
+    background-color: #fff1a8;
+}
+
+.matriz_size button {
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.block_escalar {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 6px;
+    background: #f9f9f9;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+
+.input_escalar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.input_escalar label {
+    font-weight: bold;
+}
+
+.input_escalar input {
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.resultado_escalar {
+    margin-top: 15px;
+}
+
+.resultado_escalar .matriz_grid {
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 3), 50px);
+    gap: 5px;
+    margin-top: 8px;
+}
+
+.resultado_escalar .celda_resultado {
+    width: 50px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: #f2b2b2;
+    font-weight: 600;
 }
